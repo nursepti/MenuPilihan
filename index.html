@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Pilihan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu">
+        <h2>Menu Pilihan :</h2>
+        <ul>
+            <li><a href="#" onclick="showContent(1)">[1] Menghitung Kalkulator</a></li>
+            <li><a href="#" onclick="showContent(2)">[2] Menghitung Luas Trapesium</a></li>
+            <li><a href="#" onclick="showContent(3)">[3] Menghitung Deret</a></li>
+        </ul>
+        <p>Pilihan Anda : <input type="text" id="userInput" oninput="updateChoice()"></p>
+        <p id="userChoice"></p> <!-- Menambahkan elemen untuk menampilkan pilihan pengguna -->
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        function showContent(menuNumber) {
+            var links = [
+                "https://nursepti.github.io/KalkulatorSederhana/",
+                "https://nursepti.github.io/LuasTrapesium/",
+                "https://nursepti.github.io/DeretBilanganGenapHabisDibagiTiga/"
+            ];
+
+            var choice = menuNumber;
+            document.getElementById('userInput').value = choice;
+            document.getElementById('userChoice').innerText = 'Menu ' + choice; // Memperbaiki ID yang digunakan
+            
+
+            var iframe = document.createElement('iframe');
+            iframe.src = links[choice - 1];
+
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('result').appendChild(iframe);
+        }
+
+        function updateChoice() {
+            var userInput = document.getElementById('userInput').value;
+            if (!isNaN(userInput) && userInput >= 1 && userInput <= 3) {
+                showContent(userInput);
+            } else {
+                alert('Masukkan angka antara 1 dan 3');
+            }
+        }
+    </script>
+</body>
+</html>
